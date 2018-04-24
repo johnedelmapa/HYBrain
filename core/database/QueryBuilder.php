@@ -57,8 +57,7 @@
          public function delete($table, $id)
 
         {
-            var_dump($id);
-
+    
              $sql = sprintf(
 
                 'Delete from %s where id = %s',

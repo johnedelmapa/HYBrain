@@ -4,7 +4,9 @@
 
     use App\Core\App;
 
-    class UsersController 
+    use App\Models\User;
+
+    class UsersController extends User 
     
     {
     
@@ -12,7 +14,7 @@
 
         {
 
-            $users = App::get('database')->selectAll('users');
+           $users = $this->connect()->selectAll('users');
 
             return view('users', compact('users'));
 
@@ -50,6 +52,7 @@
 
          {
         
+
         
          }
 
@@ -57,13 +60,17 @@
 
          {
 
-
+        
         
          }
 
          public function update(Request $request, $id)
         
         {
+
+
+
+
 
 
         }
@@ -73,6 +80,8 @@
         {
 
             // var_dump($_POST['id']);
+
+          //  $this->user->delete($id);
 
             App::get('database')->delete('users', [
 

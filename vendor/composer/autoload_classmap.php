@@ -12,6 +12,7 @@ return array(
     'App\\Core\\Request' => $baseDir . '/core/Request.php',
     'App\\Core\\Router' => $baseDir . '/core/Router.php',
     'App\\Models\\Projet' => $baseDir . '/app/models/Project.php',
+    'App\\Models\\User' => $baseDir . '/app/models/User.php',
     'ComposerAutoloaderInitd2735049bdb99370d257079da368d6e4' => $vendorDir . '/composer/autoload_real.php',
     'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
     'Composer\\Autoload\\ComposerStaticInitd2735049bdb99370d257079da368d6e4' => $vendorDir . '/composer/autoload_static.php',
