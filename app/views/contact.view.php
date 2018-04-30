@@ -21,6 +21,10 @@
            <textarea type="email" id="textarea" class="materialize-textarea"></textarea>
            <label class="active" for="textarea">Message</label>
          </div>
+
+         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+         <i class="material-icons right">send</i>
+         </button>
        </form>
     </div>
 

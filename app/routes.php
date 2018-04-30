@@ -8,6 +8,8 @@
 
     $router->get('contact', 'PagesController@contact');
 
+    $router->get('update', 'PagesController@update');
+
    // $router->post('names', 'controllers/add-name.php');
 
     $router->get('users', 'UsersController@index');

@@ -38,6 +38,13 @@
         {
 
             return view('contact');
+        }  
+        
+        public function update() 
+        
+        {
+
+            return view('update');
         }    
 
     }

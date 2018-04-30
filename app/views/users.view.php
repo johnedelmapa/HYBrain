@@ -5,8 +5,11 @@
 <h3>List of Users</h3>
 
 <form method ="POST" action="/users">
-    <input placeholder="Add User" name="name" required></input>  
-    <button onclick="return confirm('Are you sure you want to add this user?')" class="btn waves-effect waves-light" type="submit" name="action">Submit
+     <div class="input-field">
+           <input type="text" id="name" name="name">
+           <label class="active" for="name">Add Name</label>
+     </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
     <i class="material-icons right">send</i>
     </button>
 </form>
@@ -27,7 +30,7 @@
                 <td><input name="id" value='<?php echo $user->id; ?>' readonly style="border: none;"></td>
                 <td><?= $user->name; ?></td>
                 <td><button onclick="return confirm('Are you sure you want to delete?')" class="btn btn-small red darken-3 white-text">Delete</button>
-                <button class="btn btn-small orange darken-3 white-text">Update</button> </td>
+                <a href="/update" class="btn btn-small orange darken-3 white-text">Update<a/></td>
             </form> 
         </tr>
         <?php endforeach; ?>
