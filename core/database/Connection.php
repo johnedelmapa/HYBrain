@@ -1,29 +1,25 @@
 <?php
 
-    class Connection{
+namespace App\Core\Database;
 
-        public static function make($config){
+use PDO;
 
-            try {
+class Connection{
 
-                return new PDO(
+    public static function make($config){
+
+        try {
+
+            return new PDO(
                     
-                    $config['connection'].';dbname='.$config['name'],
-                    $config['username'],
-                    $config['password'],
-                    $config['options']
-                    
-
-                );
+                $config['connection'].';dbname='.$config['name'],
+                $config['username'],
+                $config['password'],
+                $config['options']         
+            );
                 
-                } catch (PDOException $e)   {
-                    die('Could not connect.');
-                }           
-    
-        }
- 
-
-    }
-
-
-?>
+            } catch (PDOException $e)   {
+                die('Could not connect.');
+            }             
+    } 
+}

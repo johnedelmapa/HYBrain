@@ -1,85 +1,177 @@
 <?php
 
-    class QueryBuilder {
+namespace App\Core\Database;
 
-        protected $pdo;
+use App\Core\App;
+use App\Core\Database\Connection;
+use PDO;
 
+class QueryBuilder 
+{
 
-        public function __construct($pdo){
-            $this->pdo = $pdo;
-        }
+    protected $pdo;
+    
+    protected $statement;
 
-        public function selectAll($table){
-            
-            $statement = $this->pdo->prepare("select * from {$table}");   
+    protected $fields;
 
-            $statement->execute();
-            
-            return $statement->fetchAll(PDO::FETCH_CLASS);
-        }
+    protected $query;
 
+    // public function __construct($pdo){
+    //     $this->pdo = $pdo;
+    // }
 
-        public function insert($table, $parameters) 
+    public function __construct()
+	{
+		$this->pdo = Connection::make(App::get('config')['database']); 
+	}
+
+    public function selectAll(){
+
+        $this->statement = "SELECT * FROM $this->table";
+        return $this;
+ 
+        // $statement = $this->pdo->prepare("select * from {$table}");   
+
+        // $statement->execute();
         
-        {
+        // return $statement->fetchAll(PDO::FETCH_CLASS);
 
-            //insert into names (name, email) values (:name, :email)
-            //die(var_dump(array_keys($parameters)));
+        // echo 'Check Connection'; 
+    }
 
-            $sql = sprintf(
+    public function insert($params) 
+    {
 
-                'insert into %s (%s) values (%s)',
+        $values = '';
 
-                $table,
+        $x = 1;
 
-                implode(', ', array_keys($parameters)),
-                
-                ':' . implode(', :', array_keys($parameters))
+        foreach ($params as $field) {
+            
+             $values .= '?';
+            
+            if ($x < count($params)) {
 
-            );
-
-            try {
-
-                $statement = $this->pdo->prepare($sql);
-
-                $statement->execute($parameters);
-
-            } catch (Exception $e) {
-
-                die('Whoops, something went wrong.');
-
+                    $values .= ', ';
             }
-  
-            //die(var_dump($sql));
 
+             $x++;
         }
 
-         public function delete($table, $id)
+        $this->statement = "INSERT INTO $this->table (" . implode(', ', $this->fillables) . ") VALUES ({$values})";
 
-        {
+        $this->fields = $params;
+
+        //die(var_dump($this));
+
+       return $this;
+       
+
+        // $data = implode (' ', $params);
+
+        // $this->statement = "INSERT INTO $this->table ($this->fillables) VALUES ($data)";
+
+        // die(var_dump($this));
+
+        // return $this;
+
+        //insert into names (name, email) values (:name, :email)
+        //die(var_dump(array_keys($parameters)));
+
+        // echo 'Check Connection';
+
+        // var_dump ($this->statement = "INSET INTO $this->table Values $this->fields");
+
+        // $sql = sprintf(
+
+        //     'insert into %s (%s) values (%s)',
+
+        //     $table,
+
+        //     implode(', ', array_keys($parameters)),
+            
+        //     ':' . implode(', :', array_keys($parameters))
+
+        // );
+
+        // try {
+
+        //     $statement = $this->pdo->prepare($sql);
+
+        //     $statement->execute($parameters);
+
+        // } catch (Exception $e) {
+
+        //     die('Whoops, something went wrong.');
+
+        // }
+
+        //die(var_dump($sql));
+    }
+
+    public function delete($params)
+    {
+
+        $values = implode (' ', $params);
+
+        $this->statement = "DELETE FROM $this->table WHERE id = ($values)";
+
+        return $this;
+
+        //  die(var_dump($this));
+        
+        // $this->statement = sprintf('Delete from %s where id = %s', $table, $id);
+        
+        // // return $this->pdo->prepare($this->statement)->execute();
+        // return $this->statement;
+
+        // $this->statement = sprintf('Delete from %s where id = %s', $table, $id['id']);
+        // return $this->pdo->prepare($this->statement)->execute();
+    }
+
+    public function execute()
+    {
+
+        if($this->query = $this->pdo->prepare($this->statement)) 
+
+           $this->bind($this->fields);
+
+            $this->query->execute();
+
+            return true;
+
+        // $this->query = $this->pdo->prepare($this->statement);
+        // $this->query->execute();
+        // return true;
+    }
+
+    public function get()
+    {
+        $this->execute();
+        return $this->query->fetchAll(PDO::FETCH_CLASS);
+    }
     
-             $sql = sprintf(
 
-                'Delete from %s where id = %s',
+     public function bind($fields = [])
+    {
 
-                $table,
-                $id['id']
+        if ($fields != null) {
 
-            );
+            $x = 1;
 
-            try {
+            foreach ($fields as $value) {
+               
+               $this->query->bindvalue($x,$value);
 
-                $statement = $this->pdo->prepare($sql);
-
-                $statement->execute();
-
-            } catch (Exception $e) {
-
-                die('Whoops, something went wrong.');
-
+                $x++;
             }
-    
-        }
-    } 
 
-?>
+            return $this;
+
+        }
+        
+    }
+
+
+} 

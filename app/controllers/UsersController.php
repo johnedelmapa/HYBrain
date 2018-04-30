@@ -1,23 +1,31 @@
 <?php
 
-    namespace App\Controllers;
+namespace App\Controllers;
 
-    use App\Core\App;
+use App\Core\App;
 
-    use App\Models\User;
+use App\Models\User;
 
-    class UsersController extends User 
+class UsersController  
     
     {
-    
-        public function index() 
 
+        protected $user;
+    
+        public function __construct() {
+
+             $this->user = new User();
+
+        }
+
+        public function index() 
+        
         {
 
-           $users = $this->connect()->selectAll('users');
+            return view('users', ['users' => $this->user->showUsers()]);
 
-            return view('users', compact('users'));
-
+            // $users = $this->connect()->selectAll('users');
+            // return view('users', compact('users'));
             // or  return view('index', ['user'] => $users);
 
         }
@@ -33,18 +41,25 @@
         public function store()
 
         {
+            
+            
+            //$this->user->insertUser();
+
+            $this->user->insertUser(['name' => $_POST['name']]);
+
+            return redirect('users');
 
             //Insert the user assiociated with the request
 
             // all redirect to all users
 
-            App::get('database')->insert('users', [
+            //  $users = $this->connect()->insert('users', [
 
-                'name' => $_POST['name']
+            //  'name' => $_POST['name']
         
-            ]);
+            // ]);
         
-            return redirect('users');
+            // return redirect('users');
         }
 
         
@@ -69,10 +84,6 @@
         {
 
 
-
-
-
-
         }
 
          public function destroy()
@@ -80,21 +91,19 @@
         {
 
             // var_dump($_POST['id']);
+            // $this->user->delete($id);
 
-          //  $this->user->delete($id);
+            // $users = $this->connect()->delete('users', ['id' => $_POST['id']]);
+    
+            // return redirect('users');
 
-            App::get('database')->delete('users', [
+            // $this->user->deleteUser('user', ['id' => $_POST['id']]);
+            // return redirect('users');
 
-            'id' => $_POST['id']
-        
-            ]);
-        
+            $this->user->deleteUser(['id' => $_POST['id']]);
             return redirect('users');
 
-    
         }
 
     }
 
-
-?>

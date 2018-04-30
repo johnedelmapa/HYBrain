@@ -2,16 +2,48 @@
 
 namespace App\Models;
 
+use PDO;
 use App\Core\App;
+use App\Core\Database\QueryBuilder;
 
-class User
+
+class User extends QueryBuilder
 {
 
-    public function connect()
+    protected $table = 'users';
+    protected $fillables = ['name'];
+    public $primaryKey = 'id';
+
+
+    public function showUsers()  
     {
+        // $statement = $this->pdo->prepare($this->selectAll());   
+
+        // $statement->execute();
         
-        $connection = App::get('database');
-        return $connection;
+        // return $statement->fetchAll(PDO::FETCH_CLASS);
+
+        return $this->selectAll()->get();
+    }
+
+    public function insertUser(Array $array)
+    {
+
+        return $this->insert($array)->execute();
+
+    }
+
+    
+
+    public function deleteUser(Array $array)
+    {
+
+        return $this->delete($array)->execute();
+
+        // $users =  $this->pdo->prepare($this->delete($this->table, $id));
+
+        // return $users;
+          
     }
 
 }
