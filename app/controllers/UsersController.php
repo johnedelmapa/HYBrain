@@ -45,7 +45,12 @@ class UsersController
             
             //$this->user->insertUser();
 
-            $this->user->insertUser(['name' => $_POST['name']]);
+            $this->user->insertUser([         
+                'name' => $_POST['name'],
+                'birthdate' => $_POST['birthdate'],
+                'telephone' => $_POST['telephone'],
+                'address' => $_POST['address']    
+            ]);
 
             return redirect('users');
 

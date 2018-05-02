@@ -11,7 +11,7 @@ class User extends QueryBuilder
 {
 
     protected $table = 'users';
-    protected $fillables = ['name'];
+    protected $fillables = ['name','birthdate','telephone','address'];
     public $primaryKey = 'id';
 
 
@@ -33,8 +33,8 @@ class User extends QueryBuilder
 
     }
 
-    
 
+    
     public function deleteUser(Array $array)
     {
 

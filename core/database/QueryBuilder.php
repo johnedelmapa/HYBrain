@@ -59,13 +59,15 @@ class QueryBuilder
              $x++;
         }
 
+        // die(var_dump($this->statement = "INSERT INTO $this->table (" . implode(', ', $this->fillables) . ") VALUES ({$values})"));
+
         $this->statement = "INSERT INTO $this->table (" . implode(', ', $this->fillables) . ") VALUES ({$values})";
 
         $this->fields = $params;
 
-        //die(var_dump($this));
-
-       return $this;
+        // die(var_dump($this));
+ 
+        return $this;
        
 
         // $data = implode (' ', $params);
@@ -133,13 +135,13 @@ class QueryBuilder
     public function execute()
     {
 
-        if($this->query = $this->pdo->prepare($this->statement)) 
+        $this->query = $this->pdo->prepare($this->statement);
 
-           $this->bind($this->fields);
+        $this->bind($this->fields);
 
-            $this->query->execute();
+        $this->query->execute();
 
-            return true;
+        return true;
 
         // $this->query = $this->pdo->prepare($this->statement);
         // $this->query->execute();

@@ -12,7 +12,7 @@ class Connection{
 
             return new PDO(
                     
-                $config['connection'].';dbname='.$config['name'],
+                $config['connection'].';dbname='.$config['name'], 
                 $config['username'],
                 $config['password'],
                 $config['options']         
