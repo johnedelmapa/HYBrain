@@ -1,6 +1,6 @@
     
     <!--Footer-->
-<footer id="contact" class="page-footer default_color scrollspy">
+<footer id="contact" class="page-footer green scrollspy">
     <div class="container">  
         <div class="row">
             
@@ -38,6 +38,8 @@
     </div>
 </footer>
 
+
+
     
     
     <!--Import jQuery before materialize.js-->
@@ -49,19 +51,22 @@
     $('.slider').slider();
 
     $(".button-collapse").sideNav();
-    </script>
 
-    <script>
-      $('.datepicker').pickadate({
+    // Init Modal
+    $('.modal').modal();
+
+    $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 100, // Creates a dropdown of 15 years to control year,
     today: 'Today',
     clear: 'Clear',
     close: 'Ok',
     closeOnSelect: false // Close upon selecting a date,
-  });
+    });
+
     </script>
 
+ 
 </body>
 
 </html>

@@ -140,7 +140,7 @@ class QueryBuilder
         $this->bind($this->fields);
 
         $this->query->execute();
-
+        
         return true;
 
         // $this->query = $this->pdo->prepare($this->statement);

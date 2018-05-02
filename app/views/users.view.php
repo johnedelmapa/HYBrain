@@ -4,7 +4,7 @@
 
 <h3>List of Users</h3>
 
-<form method ="POST" action="/users">
+<!-- <form method ="POST" action="/users">
      <div class="input-field">
       <i class="material-icons prefix">account_circle</i>
            <input type="text" id="icon_prefix" name="name">   
@@ -20,8 +20,8 @@
            <input type="text" id="icon_telephone" name="telephone">   
            <label class="active" for="icon_telephone">Telephone</label>
      </div>
-     
-    
+
+
      <div class="input-field">
         <i class="material-icons prefix">today</i>
            <input type="text" id="address" name="address" required>   
@@ -30,8 +30,53 @@
     <button class="btn waves-effect waves-light" type="submit" name="action">Submit
     <i class="material-icons right">send</i>
     </button>
-</form>
-		
+</form> -->
+
+
+
+
+  <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger right" href="#modal3">Add User</a>
+
+  <!-- Modal Structure -->
+  <div id="modal3" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>Create User</h4>
+        <form method ="POST" action="/users">
+            <div class="input-field">
+                <i class="material-icons prefix">account_circle</i>
+                <input type="text" id="icon_prefix" name="name">   
+                <label class="active"  for="icon_prefix">Name</label>
+            </div>
+            <div class="input-field">
+                <i class="material-icons prefix">cake</i>
+                <input type="text" class="datepicker" id="icon_prefix" name="birthdate">   
+                <label class="active"  for="icon_prefix">Birthdate</label>
+            </div>
+            <div class="input-field">
+                <i class="material-icons prefix">phone</i>
+                <input type="text" id="icon_telephone" name="telephone">   
+                <label class="active" for="icon_telephone">Telephone</label>
+            </div>
+
+
+            <div class="input-field">
+                <i class="material-icons prefix">today</i>
+                <input type="text" id="address" name="address" required>   
+                <label class="active" for="address">Address</label>
+            </div>
+            
+     
+    </div>
+    <div class="modal-footer">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <i class="material-icons right">send</i>
+        </button>
+        </form>
+    </div>
+  </div>
+    
+
 <table class="highlight">
     <thead>
         <tr>
