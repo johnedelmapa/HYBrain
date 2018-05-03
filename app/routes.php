@@ -8,7 +8,7 @@
 
     $router->get('contact', 'PagesController@contact');
 
-    $router->get('update', 'PagesController@update');
+    $router->post('update', 'PagesController@update');
 
    // $router->post('names', 'controllers/add-name.php');
 
@@ -17,6 +17,8 @@
     $router->post('users', 'UsersController@store');
 
     $router->post('users/delete', 'UsersController@destroy');
+
+    $router->post('users/update', 'UsersController@update');
 
 
 

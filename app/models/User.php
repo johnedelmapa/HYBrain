@@ -46,4 +46,10 @@ class User extends QueryBuilder
           
     }
 
+    public function updateUser($params, $id) 
+    {
+
+        return $this->update($params, $id)->execute();
+    }
+
 }

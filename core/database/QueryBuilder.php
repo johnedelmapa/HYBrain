@@ -175,5 +175,33 @@ class QueryBuilder
         
     }
 
+    public function update($parameters, $id)
+    { 
+
+        $this->statement = "UPDATE $this->table SET " . implode(' = ?, ', array_keys($parameters)) . " = ? ". " WHERE ID = {$id}";
+        $this->fields = $parameters;
+
+        // die(var_dump($this->statement));
+        
+        return $this;
+
+        // $this->statement = sprintf('UPDATE %s SET %s WHERE %s = ' . $id, 
+
+        //         $this->table,
+
+        //         implode(' = ?, ', array_keys($parameters)) . ' = ? ',
+
+        //     $field
+        // );
+
+        // $this->fields = $parameters;
+
+        // die(var_dump($this));
+
+        // return $this;
+
+
+    }
+
 
 } 

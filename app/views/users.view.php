@@ -36,12 +36,12 @@
 
 
   <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger right" href="#modal3">Add User</a>
+  <a class="waves-effect waves-light btn modal-trigger right" href="#modal3"><i class="material-icons prefix">add</i></a>
 
   <!-- Modal Structure -->
   <div id="modal3" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <h4>Create User</h4>
+        <h4>Add User</h4>
         <form method ="POST" action="/users">
             <div class="input-field">
                 <i class="material-icons prefix">account_circle</i>
@@ -98,9 +98,26 @@
                 <td><?= $user->birthdate; ?></td>
                 <td><?= $user->telephone; ?></td>
                 <td><?= $user->address; ?></td>
-                <td><button onclick="return confirm('Are you sure you want to delete?')" class="btn btn-small red darken-3 white-text">Delete</button>
-                <a href="/update" class="btn btn-small orange darken-3 white-text">Update<a/></td>
+                <td>
+                <button onclick="return confirm('Are you sure you want to delete?')" class="btn btn-small red darken-3 white-text"><i class="material-icons prefix">delete</i></button>
+              
             </form> 
+
+             <form method="POST" action="/update" > 
+                <input name="id" value='<?php echo $user->id; ?>'hidden>
+                <input name="name" value='<?php echo $user->name; ?>'hidden>
+                <input name="birthdate" value='<?php echo $user->birthdate; ?>'hidden>
+                <input name="telephone" value='<?php echo $user->telephone; ?>'hidden>
+                <input name="address" value='<?php echo $user->address; ?>'hidden>
+                <button class="btn btn-small orange darken-3 white-text"><i class="material-icons prefix">update</i></button></td>
+
+                 <!-- MODAL STRUCTURE -->
+    
+            </form>    
+
+ 
+
+            
         </tr>
         <?php endforeach; ?>
     </tbody>

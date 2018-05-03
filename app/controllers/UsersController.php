@@ -84,10 +84,18 @@ class UsersController
         
          }
 
-         public function update(Request $request, $id)
+         public function update()
         
         {
 
+            $this->user->updateUser([         
+                'name' => $_POST['name'],
+                'birthdate' => $_POST['birthdate'],
+                'telephone' => $_POST['telephone'],
+                'address' => $_POST['address']    
+            ], $_POST['id']);
+
+            return redirect('users');
 
         }
 
