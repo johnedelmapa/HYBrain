@@ -34,7 +34,7 @@ class UsersController
 
         {
 
-
+            return redirect('users');
 
         }
 
@@ -68,19 +68,19 @@ class UsersController
         }
 
         
-         public function show($id)
+         public function show()
 
          {
         
-
+            return redirect('users');
         
          }
 
-         public function edit($id)
+         public function edit()
 
          {
 
-        
+            return redirect('users/update');
         
          }
 

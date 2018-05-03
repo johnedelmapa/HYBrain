@@ -1,5 +1,4 @@
-    
-    <!--Footer-->
+<!--Footer-->
 <footer id="contact" class="page-footer green scrollspy">
     <div class="container">  
         <div class="row">
@@ -37,22 +36,17 @@
         </div>
     </div>
 </footer>
-
-
-
-    
-    
+   
     <!--Import jQuery before materialize.js-->
+   
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
     <script>
-
     $('.slider').slider();
 
     $(".button-collapse").sideNav();
 
-    // Init Modal
     $('.modal').modal();
 
     $('.datepicker').pickadate({
@@ -65,7 +59,6 @@
     });
 
     </script>
-
  
 </body>
 

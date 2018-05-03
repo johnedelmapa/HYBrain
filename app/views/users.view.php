@@ -4,37 +4,6 @@
 
 <h3>List of Users</h3>
 
-<!-- <form method ="POST" action="/users">
-     <div class="input-field">
-      <i class="material-icons prefix">account_circle</i>
-           <input type="text" id="icon_prefix" name="name">   
-           <label class="active"  for="icon_prefix">Name</label>
-     </div>
-     <div class="input-field">
-      <i class="material-icons prefix">cake</i>
-           <input type="text" class="datepicker" id="icon_prefix" name="birthdate">   
-           <label class="active"  for="icon_prefix">Birthdate</label>
-     </div>
-     <div class="input-field">
-        <i class="material-icons prefix">phone</i>
-           <input type="text" id="icon_telephone" name="telephone">   
-           <label class="active" for="icon_telephone">Telephone</label>
-     </div>
-
-
-     <div class="input-field">
-        <i class="material-icons prefix">today</i>
-           <input type="text" id="address" name="address" required>   
-           <label class="active" for="address">Address</label>
-     </div>
-    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-    <i class="material-icons right">send</i>
-    </button>
-</form> -->
-
-
-
-
   <!-- Modal Trigger -->
   <a class="waves-effect waves-light btn modal-trigger right" href="#modal3"><i class="material-icons prefix">add</i></a>
 
@@ -45,28 +14,25 @@
         <form method ="POST" action="/users">
             <div class="input-field">
                 <i class="material-icons prefix">account_circle</i>
-                <input type="text" id="icon_prefix" name="name">   
+                <input type="text" id="icon_prefix" name="name" required>   
                 <label class="active"  for="icon_prefix">Name</label>
             </div>
             <div class="input-field">
                 <i class="material-icons prefix">cake</i>
-                <input type="text" class="datepicker" id="icon_prefix" name="birthdate">   
+                <input type="text" class="datepicker" id="icon_prefix" name="birthdate" required>   
                 <label class="active"  for="icon_prefix">Birthdate</label>
             </div>
             <div class="input-field">
                 <i class="material-icons prefix">phone</i>
-                <input type="text" id="icon_telephone" name="telephone">   
+                <input type="text" id="icon_telephone" name="telephone" required>   
                 <label class="active" for="icon_telephone">Telephone</label>
             </div>
-
-
             <div class="input-field">
                 <i class="material-icons prefix">today</i>
                 <input type="text" id="address" name="address" required>   
                 <label class="active" for="address">Address</label>
             </div>
-            
-     
+                 
     </div>
     <div class="modal-footer">
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
@@ -77,7 +43,7 @@
   </div>
     
 
-<table class="highlight">
+<table >
     <thead>
         <tr>
             <th>ID</th>
@@ -109,15 +75,8 @@
                 <input name="birthdate" value='<?php echo $user->birthdate; ?>'hidden>
                 <input name="telephone" value='<?php echo $user->telephone; ?>'hidden>
                 <input name="address" value='<?php echo $user->address; ?>'hidden>
-                <button class="btn btn-small orange darken-3 white-text"><i class="material-icons prefix">update</i></button></td>
-
-                 <!-- MODAL STRUCTURE -->
-    
-            </form>    
-
- 
-
-            
+                <button class="btn btn-small orange darken-3 white-text"><i class="material-icons prefix">update</i></button></td>    
+             </form>     
         </tr>
         <?php endforeach; ?>
     </tbody>

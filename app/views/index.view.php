@@ -36,21 +36,21 @@
 
                   <div  class="col s12 m4 l4">
                       <div class="center promo promo-example">
-                          <i class="mdi-image-flash-on"></i>
+                            <i class="material-icons large">flash_on</i>
                           <h5 class="promo-caption">Speeds up development</h5>
                           <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Cum sociis natoque penatibus et magnis dis parturient montes.</p>
                       </div>
                   </div>
                   <div class="col s12 m4 l4">
                       <div class="center promo promo-example">
-                          <i class="mdi-social-group"></i>
+                          <i class="material-icons large">tablet_mac</i>
                           <h5 class="promo-caption">User Experience Focused</h5>
                           <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
                       </div>
                   </div>
                   <div class="col s12 m4 l4">
                       <div class="center promo promo-example">
-                          <i class="mdi-hardware-desktop-windows"></i>
+                          <i class="material-icons large">subscriptions</i>
                           <h5 class="promo-caption">Fully responsive</h5>
                           <p class="light center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.</p>
                       </div>
