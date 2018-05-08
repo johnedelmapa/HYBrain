@@ -9,47 +9,39 @@ use App\Core\Database\QueryBuilder;
 
 class User extends QueryBuilder
 {
-
+    protected $id = 1;
     protected $table = 'users';
     protected $fillables = ['name','birthdate','telephone','address'];
-    public $primaryKey = 'id';
 
-
-    public function showUsers()  
+    public function all()  
     {
-        // $statement = $this->pdo->prepare($this->selectAll());   
-
-        // $statement->execute();
-        
-        // return $statement->fetchAll(PDO::FETCH_CLASS);
-
-        return $this->selectAll()->get();
+        return $this->select()->table()->get();
     }
 
-    public function insertUser(Array $array)
+    public function create($request)
     {
-
-        return $this->insert($array)->execute();
-
+        return $this->insert()->table()->values($this->filter($request))->execute();
     }
 
+    public function find($id)
+    {
 
+        return $this->select()->table()->where('id', $id)->get();
+    }
+
+    public function change($request, $id) 
+    {
+
+        // return $this->update($params, $id)->execute();
+        return $this->update()->table()->set($this->filter($request))->where('id', $id)->execute();
     
-    public function deleteUser(Array $array)
-    {
-
-        return $this->delete($array)->execute();
-
-        // $users =  $this->pdo->prepare($this->delete($this->table, $id));
-
-        // return $users;
-          
     }
 
-    public function updateUser($params, $id) 
+     public function remove()
     {
 
-        return $this->update($params, $id)->execute();
+        $this->delete()->table()->where('id', $_POST['id'])->execute();
+        
     }
 
 }

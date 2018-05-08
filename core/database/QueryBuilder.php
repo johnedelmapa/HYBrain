@@ -17,32 +17,57 @@ class QueryBuilder
 
     protected $query;
 
-    // public function __construct($pdo){
-    //     $this->pdo = $pdo;
-    // }
 
     public function __construct()
 	{
 		$this->pdo = Connection::make(App::get('config')['database']); 
 	}
 
-    public function selectAll(){
+    public function select($fields = null)
+    {
+        $this->statement = 'SELECT * FROM ';
 
-        $this->statement = "SELECT * FROM $this->table";
         return $this;
- 
-        // $statement = $this->pdo->prepare("select * from {$table}");   
-
-        // $statement->execute();
-        
-        // return $statement->fetchAll(PDO::FETCH_CLASS);
-
-        // echo 'Check Connection'; 
     }
 
-    public function insert($params) 
+    public function table($table = null)
+    {
+        $this->statement .=  $this->table; 
+
+        return $this;
+    }
+
+    public function where($field, $value)
+    {
+        if (is_string($value)) {
+            $this->statement .= ' WHERE `' . $field . '` = ' . "'" . $value . "'";
+            return $this;
+        }
+
+        $this->statement .=  ' WHERE `' . $field . '` = ' . $value;
+        return $this;
+    } 
+
+     public function limit($number)
     {
 
+        $this->statement .= " LIMIT $number";
+
+        return $this;
+    }
+
+ 
+    public function insert() 
+    {
+
+        $this->statement = "INSERT INTO ";
+ 
+        return $this;
+
+    }
+
+    public function values($params){
+        
         $values = '';
 
         $x = 1;
@@ -59,77 +84,30 @@ class QueryBuilder
              $x++;
         }
 
-        // die(var_dump($this->statement = "INSERT INTO $this->table (" . implode(', ', $this->fillables) . ") VALUES ({$values})"));
-
-        $this->statement = "INSERT INTO $this->table (" . implode(', ', $this->fillables) . ") VALUES ({$values})";
-
+        $this->statement .= " (" . implode(', ', $this->fillables) . ") VALUES ({$values})";
         $this->fields = $params;
-
-        // die(var_dump($this));
- 
         return $this;
-       
 
-        // $data = implode (' ', $params);
-
-        // $this->statement = "INSERT INTO $this->table ($this->fillables) VALUES ($data)";
-
-        // die(var_dump($this));
-
-        // return $this;
-
-        //insert into names (name, email) values (:name, :email)
-        //die(var_dump(array_keys($parameters)));
-
-        // echo 'Check Connection';
-
-        // var_dump ($this->statement = "INSET INTO $this->table Values $this->fields");
-
-        // $sql = sprintf(
-
-        //     'insert into %s (%s) values (%s)',
-
-        //     $table,
-
-        //     implode(', ', array_keys($parameters)),
-            
-        //     ':' . implode(', :', array_keys($parameters))
-
-        // );
-
-        // try {
-
-        //     $statement = $this->pdo->prepare($sql);
-
-        //     $statement->execute($parameters);
-
-        // } catch (Exception $e) {
-
-        //     die('Whoops, something went wrong.');
-
-        // }
-
-        //die(var_dump($sql));
     }
 
-    public function delete($params)
+    public function delete()
     {
 
-        $values = implode (' ', $params);
-
-        $this->statement = "DELETE FROM $this->table WHERE id = ($values)";
+        $this->statement = "DELETE FROM ";
 
         return $this;
+    }
 
-        //  die(var_dump($this));
-        
-        // $this->statement = sprintf('Delete from %s where id = %s', $table, $id);
-        
-        // // return $this->pdo->prepare($this->statement)->execute();
-        // return $this->statement;
+    public function filter($request)
+    {
+        $fieldss = [];
+        foreach($request as $key => $value) {
+            if (in_array($key, $this->fillables)) {
+                $fieldss[$key] = $value;
+            }
+        }
 
-        // $this->statement = sprintf('Delete from %s where id = %s', $table, $id['id']);
-        // return $this->pdo->prepare($this->statement)->execute();
+        return $fieldss;
     }
 
     public function execute()
@@ -139,13 +117,11 @@ class QueryBuilder
 
         $this->bind($this->fields);
 
-        $this->query->execute();
+        if ($this->query->execute()) {
+            return true;
+        }
         
-        return true;
-
-        // $this->query = $this->pdo->prepare($this->statement);
-        // $this->query->execute();
-        // return true;
+        return false;
     }
 
     public function get()
@@ -158,6 +134,7 @@ class QueryBuilder
      public function bind($fields = [])
     {
 
+        
         if ($fields != null) {
 
             $x = 1;
@@ -175,33 +152,24 @@ class QueryBuilder
         
     }
 
-    public function update($parameters, $id)
+    public function update()
     { 
 
-        $this->statement = "UPDATE $this->table SET " . implode(' = ?, ', array_keys($parameters)) . " = ? ". " WHERE ID = {$id}";
-        $this->fields = $parameters;
+        $this->statement = " UPDATE ";
+        
 
         // die(var_dump($this->statement));
         
         return $this;
 
-        // $this->statement = sprintf('UPDATE %s SET %s WHERE %s = ' . $id, 
-
-        //         $this->table,
-
-        //         implode(' = ?, ', array_keys($parameters)) . ' = ? ',
-
-        //     $field
-        // );
-
-        // $this->fields = $parameters;
-
-        // die(var_dump($this));
-
-        // return $this;
-
-
     }
 
+    public function set($parameters)
+    {
+
+     $this->statement = $this->statement .  " SET " . implode(' = ?, ', array_keys($parameters)). " = ? ";
+     $this->fields = $parameters;
+     return $this;   
+    }
 
 } 

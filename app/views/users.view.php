@@ -32,7 +32,6 @@
                 <input type="text" id="address" name="address" required>   
                 <label class="active" for="address">Address</label>
             </div>
-                 
     </div>
     <div class="modal-footer">
         <button class="btn waves-effect waves-light" type="submit" name="action">Submit
@@ -40,7 +39,7 @@
         </button>
         </form>
     </div>
-  </div>
+  </div> <!-- Modal Structure End -->
     
 
 <table >
@@ -56,29 +55,33 @@
     </thead>
 
     <tbody>
+        <?php if(count($users) > 0 ) : ?>
         <?php  foreach ($users as $user) : ?>
-        <tr>
-            <form method="POST" action="/users/delete" > 
-                <td><input name="id" value='<?php echo $user->id; ?>' readonly style="border: none;"></td>
-                <td><?= $user->name; ?></td>
-                <td><?= $user->birthdate; ?></td>
-                <td><?= $user->telephone; ?></td>
-                <td><?= $user->address; ?></td>
-                <td>
-                <button onclick="return confirm('Are you sure you want to delete?')" class="btn btn-small red darken-3 white-text"><i class="material-icons prefix">delete</i></button>
-              
-            </form> 
+            <tr>
+                <form method="POST" action="/users/delete" > 
+                    <td><input name="id" value='<?php echo $user->id; ?>' readonly style="border: none;"></td>
+                    <td><?= $user->name; ?></td>
+                    <td><?= $user->birthdate; ?></td>
+                    <td><?= $user->telephone; ?></td>
+                    <td><?= $user->address; ?></td>
+                    <td>
+                    <button onclick="return confirm('Are you sure you want to delete?')" class="btn btn-small red darken-3 white-text"><i class="material-icons prefix">delete</i></button>   
+                </form> 
 
-             <form method="POST" action="/update" > 
-                <input name="id" value='<?php echo $user->id; ?>'hidden>
-                <input name="name" value='<?php echo $user->name; ?>'hidden>
-                <input name="birthdate" value='<?php echo $user->birthdate; ?>'hidden>
-                <input name="telephone" value='<?php echo $user->telephone; ?>'hidden>
-                <input name="address" value='<?php echo $user->address; ?>'hidden>
-                <button class="btn btn-small orange darken-3 white-text"><i class="material-icons prefix">update</i></button></td>    
-             </form>     
-        </tr>
+                <form method="POST" action="/update" > 
+                    <input name="id" value='<?php echo $user->id; ?>'hidden>
+                    <input name="name" value='<?php echo $user->name; ?>'hidden>
+                    <input name="birthdate" value='<?php echo $user->birthdate; ?>'hidden>
+                    <input name="telephone" value='<?php echo $user->telephone; ?>'hidden>
+                    <input name="address" value='<?php echo $user->address; ?>'hidden>
+                    <button class="btn btn-small orange darken-3 white-text"><i class="material-icons prefix">update</i></button></td>    
+                </form>     
+            </tr>
         <?php endforeach; ?>
+        <?php  else : ?>
+        <p>No User found </p>
+        <?php endif ; ?>        
+
     </tbody>
 </table>
 </div>

@@ -1,19 +1,19 @@
-@if(count($errors) > 0)
-    @foreach($errors->all() as $error)
+<?php if(count($errors) > 0) : ?>
+    <?php foreach($errors->all() as $error) : ?>
         <div class="alert alert-danger">
             {{$error}}
         </div>
-    @endforeach
-@endif
+    <?php endforeach; ?>
+<?php endif; ?>
 
-@if(session('success'))
+<?php if(session('success')) : ?>
         <div class="alert alert-success">
             {{session('success')}}
         </div>
-@endif
+<?php endif; ?>
 
-@if(session('error'))
+<?php if(session('error')) : ?>
         <div class="alert alert-danger">
             {{session('error')}}
         </div>
-@endif
+<?php endif; ?>

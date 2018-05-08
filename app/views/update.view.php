@@ -25,6 +25,7 @@
                 <input type="text" id="address" name="address" value='<?= $_POST['address']?>'>   
              
             </div>
+            
 
             <button class="btn waves-effect waves-light" type="submit" name="action">Update
             <i class="material-icons right">send</i>
