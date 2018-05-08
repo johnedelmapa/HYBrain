@@ -26,14 +26,12 @@ class QueryBuilder
     public function select($fields = null)
     {
         $this->statement = 'SELECT * FROM ';
-
         return $this;
     }
 
     public function table($table = null)
     {
         $this->statement .=  $this->table; 
-
         return $this;
     }
 
@@ -52,7 +50,6 @@ class QueryBuilder
     {
 
         $this->statement .= " LIMIT $number";
-
         return $this;
     }
 
@@ -61,7 +58,6 @@ class QueryBuilder
     {
 
         $this->statement = "INSERT INTO ";
- 
         return $this;
 
     }
@@ -69,7 +65,6 @@ class QueryBuilder
     public function values($params){
         
         $values = '';
-
         $x = 1;
 
         foreach ($params as $field) {
@@ -92,9 +87,8 @@ class QueryBuilder
 
     public function delete()
     {
-
+        
         $this->statement = "DELETE FROM ";
-
         return $this;
     }
 
@@ -133,8 +127,7 @@ class QueryBuilder
 
      public function bind($fields = [])
     {
-
-        
+          
         if ($fields != null) {
 
             $x = 1;
@@ -156,10 +149,6 @@ class QueryBuilder
     { 
 
         $this->statement = " UPDATE ";
-        
-
-        // die(var_dump($this->statement));
-        
         return $this;
 
     }
