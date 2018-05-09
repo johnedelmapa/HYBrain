@@ -46,14 +46,59 @@ class QueryBuilder
         return $this;
     } 
 
-     public function limit($number)
+    public function and($field, $value)
+    {
+         if (is_string($value)) {
+            $this->statement .= ' AND `' . $field . '` = ' . "'" . $value . "'";
+            return $this;
+        }
+
+        $this->statement .=  ' AND `' . $field . '` = ' . $value;
+        return $this;
+
+    }
+
+    public function or($field, $value)
+    {
+         if (is_string($value)) {
+            $this->statement .= ' OR `' . $field . '` = ' . "'" . $value . "'";
+            return $this;
+        }
+
+        $this->statement .=  ' OR `' . $field . '` = ' . $value;
+        return $this;
+
+    }
+    
+    public function limit($number)
     {
 
         $this->statement .= " LIMIT $number";
         return $this;
     }
 
- 
+    public function orderBy($field, $order)
+    {
+
+       $this->statement .= ' ORDER BY ' . $field .' '. $order;
+       return $this;
+    }
+
+    public function like($field, $letter){
+
+        if($letter . '%' == $letter . '%') {
+            $this->statement .= ' WHERE ' .  $field . ' LIKE ' .'' ."'".($letter).'%'."' ";
+            return $this;
+
+        } elseif('%' . $letter == '%' . $letter){
+
+           $this->statement .= ' WHERE ' .  $field . ' LIKE ' .'' ."'".'%'.($letter)."' ";
+            return $this;
+        }
+
+        return null;
+    }
+
     public function insert() 
     {
 
@@ -87,7 +132,7 @@ class QueryBuilder
 
     public function delete()
     {
-        
+
         $this->statement = "DELETE FROM ";
         return $this;
     }

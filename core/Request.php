@@ -14,9 +14,33 @@ class Request
         return $_SERVER['REQUEST_METHOD']; //GET OR POST
     }
 
-    public static function request()
+    public static function request($field = null)
     {
-        return $_POST;
+        if (isset($_POST[$field])) {
+            return $_POST[$field];
+        }
+
+        if (isset($_GET[$field])) {
+            return $_GET[$field];
+        }
+
+        $request = array();
+
+        if ($field == null) {
+            if (isset($_POST)) {
+                foreach ($_POST as $key => $value) {
+                    $request[$key] = $value;
+                }
+            }
+
+            if (isset($_GET)) {
+                foreach ($_GET as $key => $value) {
+                    $request[$key] = $value;
+                }
+            }
+        }
+        
+        return $request;
     }
 }
 

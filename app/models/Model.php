@@ -1,9 +1,6 @@
 <?php
 
 namespace App\Models;
-
-use PDO;
-use App\Core\App;
 use App\Core\Database\QueryBuilder;
 
 class Model extends QueryBuilder 
@@ -11,11 +8,14 @@ class Model extends QueryBuilder
 
     public function all()  
     {
-        return $this->select()->table()->get();
+
+        return $this->select()->table()->where('id', 51)->or('id', 52)->get();
+        // return $this->select()->table()->get();
     }
 
     public function create($request)
     {
+
         return $this->insert()->table()->values($this->filter($request))->execute();
     }
 
@@ -31,7 +31,7 @@ class Model extends QueryBuilder
         return $this->update()->table()->set($this->filter($request))->where('id', $id)->execute(); 
     }
 
-    public function remove()
+    public function remove($id)
     {
 
         return $this->delete()->table()->where('id', $_POST['id'])->execute();       

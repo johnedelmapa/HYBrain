@@ -47,13 +47,13 @@ class UsersController
 
     public function update() 
     {
-        $this->user->change(Request::request(), $_POST['id']);
+        $this->user->change(Request::request(), Request::request('id'));
         return redirect('users');
     }
 
     public function destroy()
     {
-        $this->user->remove(['id' => $_POST['id']]);
+        $this->user->remove(['id' => Request::request('id')]);
         return redirect('users');
     }
 
